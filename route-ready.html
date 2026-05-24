@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Route Ready — Pool Tech Training by SplashLens</title>
+<meta name="description" content="10-module training curriculum that turns a new pool service hire into a competent field technician in 30 days. Chemical math, equipment fault diagnosis, SLAM, filter procedures, and customer communication.">
+<link rel="canonical" href="https://splashlens.com/route-ready">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Route Ready — Pool Tech Training by SplashLens">
+<meta property="og:description" content="From new hire to competent pool tech in 30 days. $29/mo or $199 lifetime.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&h=630&fit=crop&q=80">
+<meta property="og:url" content="https://splashlens.com/route-ready">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Course","name":"Route Ready","description":"10-module pool technician training curriculum. From new hire to competent field tech in 30 days.","provider":{"@type":"Organization","name":"SplashLens","url":"https://splashlens.com"},"offers":{"@type":"Offer","price":"199","priceCurrency":"USD","availability":"https://schema.org/PreOrder"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT30D"}}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sky:#0284c7;--sky-dark:#0369a1;--sky-light:#e0f2fe;--text:#0f172a;--muted:#64748b}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#f8fafc;color:var(--text)}
+nav{background:var(--sky-dark);height:56px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.nav-logo{color:white;font-weight:800;font-size:1.1rem;text-decoration:none}
+.nav-cta{background:white;color:var(--sky-dark);padding:7px 18px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none}
+.hero{background:linear-gradient(135deg,var(--sky-dark),#0369a1 40%,#0284c7);color:white;text-align:center;padding:72px 24px 60px}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#bae6fd;margin-bottom:16px}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero-sub{font-size:1.1rem;color:#bae6fd;max-width:540px;margin:0 auto 32px;line-height:1.6}
+.price-tag{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:10px 20px;margin-bottom:32px;font-size:.9rem}
+.price-main{font-size:1.4rem;font-weight:900;color:white}
+.price-alt{color:#bae6fd;font-size:.85rem}
+.subscribe-form{display:flex;gap:10px;max-width:420px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.subscribe-form input{flex:1;min-width:220px;padding:14px 18px;border-radius:100px;border:2px solid transparent;font-size:15px;outline:none}
+.subscribe-form input:focus{border-color:var(--sky)}
+.subscribe-form button{background:#0f172a;color:white;padding:14px 24px;border-radius:100px;border:none;font-weight:800;font-size:15px;cursor:pointer;white-space:nowrap;transition:.15s}
+.subscribe-form button:hover{background:#1e293b}
+#form-msg{margin-top:12px;font-size:13px;color:#bae6fd;min-height:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:700;color:#4ade80;margin-bottom:12px}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* Section */
+section{padding:64px 24px;max-width:1000px;margin:0 auto}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;margin-bottom:12px}
+.s-sub{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.65}
+
+/* Modules */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:32px}
+.module-card{background:white;border:1px solid #e2e8f0;border-radius:12px;padding:20px;transition:.2s}
+.module-card:hover{border-color:#bae6fd;box-shadow:0 4px 16px rgba(2,132,199,.08)}
+.module-num{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--sky);margin-bottom:6px}
+.module-title{font-size:15px;font-weight:800;margin-bottom:6px}
+.module-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:32px}
+.price-card{background:white;border:2px solid #e2e8f0;border-radius:14px;padding:24px;text-align:center;position:relative}
+.price-card.featured{border-color:var(--sky);box-shadow:0 0 0 4px rgba(2,132,199,.08)}
+.price-card .featured-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--sky);color:white;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 12px;border-radius:100px;white-space:nowrap}
+.price-card .price{font-size:2rem;font-weight:900;color:var(--sky-dark);line-height:1}
+.price-card .price-period{font-size:13px;color:var(--muted);margin:4px 0 12px}
+.price-card .tier-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:8px}
+.price-card ul{list-style:none;font-size:12px;color:var(--muted);text-align:left;line-height:2}
+.price-card ul li::before{content:"✓ ";color:var(--sky);font-weight:800}
+
+/* FAQ */
+.faq-list{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:white;border:1px solid #e2e8f0;border-radius:10px;padding:18px 20px}
+.faq-q{font-size:14px;font-weight:800;margin-bottom:6px}
+.faq-a{font-size:13px;color:var(--muted);line-height:1.6}
+
+footer{background:#0f172a;color:#64748b;text-align:center;padding:28px;font-size:13px}
+footer a{color:#38bdf8;text-decoration:none}
+@media(max-width:480px){.hero{padding:48px 20px 40px}.subscribe-form{flex-direction:column;align-items:stretch}.subscribe-form input{min-width:0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">SplashLens</a>
+  <a href="https://app.splashlens.com" class="nav-cta" target="_blank" rel="noopener">Open App →</a>
+</nav>
+
+<div class="hero">
+  <div class="badge"><span class="dot"></span> Early Access — 50 spots at launch price</div>
+  <div class="eyebrow">Introducing Route Ready</div>
+  <h1>From New Hire to<br>Competent Pool Tech<br>in 30 Days</h1>
+  <p class="hero-sub">10 structured modules covering chemical math, equipment fault diagnosis, SLAM procedures, filter maintenance, and customer communication — tied to the tool your techs already use.</p>
+  <div class="price-tag">
+    <span class="price-main">$199 lifetime</span>
+    <span class="price-alt">or $29/mo per tech · Team plans from $99/mo</span>
+  </div>
+  <form class="subscribe-form" id="subscribe-form" onsubmit="submitForm(event)">
+    <input type="email" placeholder="your@email.com" id="email-input" required autocomplete="email">
+    <button type="submit">Get Early Access</button>
+  </form>
+  <div id="form-msg"></div>
+</div>
+
+<section>
+  <div class="eyebrow" style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:12px">The Curriculum</div>
+  <h2>10 Modules. Everything a Pool Tech Needs.</h2>
+  <p class="s-sub">Each module is self-paced, mobile-first, and tied directly to the SplashLens app — so learning and doing happen in the same tool.</p>
+  <div class="module-grid">
+    <div class="module-card"><div class="module-num">Module 1</div><div class="module-title">Pool Chemistry Fundamentals</div><div class="module-desc">FC, pH, TA, CH, CYA — what each means, how they interact, the dead zones that cost customers money.</div></div>
+    <div class="module-card"><div class="module-num">Module 2</div><div class="module-title">Dosing Math Without a Calculator</div><div class="module-desc">Per-10K rules of thumb, chemical strength basics, mixing sequence, dangerous combinations.</div></div>
+    <div class="module-card"><div class="module-num">Module 3</div><div class="module-title">Equipment 101</div><div class="module-desc">Pumps, filters, heaters, salt systems — how they work, how they fail, what the pressure gauge is telling you.</div></div>
+    <div class="module-card"><div class="module-num">Module 4</div><div class="module-title">Reading Error Codes in the Field</div><div class="module-desc">Why error codes are symptoms, not problems. The 4 categories. When to reset vs. investigate vs. escalate.</div></div>
+    <div class="module-card"><div class="module-num">Module 5</div><div class="module-title">Running a Weekly Service Route</div><div class="module-desc">The 12-step checklist in the right order. Documentation, photos, when to leave a note vs. call the customer.</div></div>
+    <div class="module-card"><div class="module-num">Module 6</div><div class="module-title">Green Pool Recovery & SLAM</div><div class="module-desc">SLAM from target FC calculation through OCLT pass. The exact script for explaining it to a customer.</div></div>
+    <div class="module-card"><div class="module-num">Module 7</div><div class="module-title">Seasonal — Opening & Closing</div><div class="module-desc">De-winterize, balance, shock, winterize — the full sequence with climate-specific differences.</div></div>
+    <div class="module-card"><div class="module-num">Module 8</div><div class="module-title">Robotic Cleaners & Automation</div><div class="module-desc">5 most common robotic errors, pool automation basics, when it's an IT problem not a tech problem.</div></div>
+    <div class="module-card"><div class="module-num">Module 9</div><div class="module-title">Customer Communication & Upsell</div><div class="module-desc">Diagnosis-recommendation-cost script. How to present repairs without leading with the number.</div></div>
+    <div class="module-card"><div class="module-num">Module 10</div><div class="module-title">Business Foundations</div><div class="module-desc">Route economics, billable hours, CPO certification, career paths, how to read a pool service P&L.</div></div>
+  </div>
+</section>
+
+<div style="background:var(--sky-dark);padding:64px 24px;text-align:center;color:white">
+  <div style="max-width:700px;margin:0 auto">
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:900;margin-bottom:12px;color:white">Pass the Final Exam. Get Certified.</h2>
+    <p style="color:#bae6fd;font-size:1rem;margin-bottom:0;line-height:1.6">30-question final across all 10 modules. 75% to pass. Every tech who passes gets a <strong style="color:white">SplashLens Route Ready certificate</strong> — PDF with their name, score, and a verifiable QR code. Pool service companies can verify their techs' certifications at splashlens.com/verify.</p>
+  </div>
+</div>
+
+<section>
+  <div class="eyebrow" style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--sky);margin-bottom:12px">Pricing</div>
+  <h2>Simple, Transparent Pricing</h2>
+  <p class="s-sub">One-time lifetime access or monthly. Team plans scale with your crew size.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="tier-name">Individual</div>
+      <div class="price">$29<span style="font-size:1rem;font-weight:500">/mo</span></div>
+      <div class="price-period">or $199 one-time lifetime</div>
+      <ul>
+        <li>All 10 modules</li>
+        <li>Final exam + certificate</li>
+        <li>All future updates</li>
+        <li>Works inside SplashLens app</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="tier-name">Team Starter</div>
+      <div class="price">$99<span style="font-size:1rem;font-weight:500">/mo</span></div>
+      <div class="price-period">up to 5 techs</div>
+      <ul>
+        <li>Everything in Individual</li>
+        <li>Manager progress dashboard</li>
+        <li>Team completion tracking</li>
+        <li>Company certificate display</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="tier-name">Team Growth</div>
+      <div class="price">$199<span style="font-size:1rem;font-weight:500">/mo</span></div>
+      <div class="price-period">up to 15 techs</div>
+      <ul>
+        <li>Everything in Team Starter</li>
+        <li>Priority email support</li>
+        <li>Custom onboarding checklist</li>
+        <li>Early access to new modules</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="tier-name">Company Unlimited</div>
+      <div class="price">$399<span style="font-size:1rem;font-weight:500">/mo</span></div>
+      <div class="price-period">unlimited techs</div>
+      <ul>
+        <li>Everything in Team Growth</li>
+        <li>Unlimited seats</li>
+        <li>Bulk certificate generation</li>
+        <li>White-label option available</li>
+      </ul>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Early access: first 50 individuals get lifetime access for <strong>$99</strong> (50% off).</p>
+    <form style="display:flex;gap:10px;max-width:380px;margin:0 auto;flex-wrap:wrap;justify-content:center" onsubmit="submitFormBottom(event)">
+      <input type="email" placeholder="your@email.com" id="email-input-2" required style="flex:1;min-width:200px;padding:13px 18px;border-radius:100px;border:2px solid #e2e8f0;font-size:14px;outline:none">
+      <button type="submit" style="background:var(--sky);color:white;padding:13px 22px;border-radius:100px;border:none;font-weight:800;font-size:14px;cursor:pointer">Reserve Spot</button>
+    </form>
+    <div id="form-msg-2" style="margin-top:10px;font-size:13px;color:var(--sky);min-height:16px"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q">When does Route Ready launch?</div><div class="faq-a">We're targeting a launch within 60 days. Sign up above and you'll be the first to know — and the first to get the early-access pricing.</div></div>
+    <div class="faq-item"><div class="faq-q">Does my tech need the SplashLens app to take Route Ready?</div><div class="faq-a">Yes — Route Ready is built into SplashLens so the training and the tool live in the same place. SplashLens is free, so this isn't an additional cost.</div></div>
+    <div class="faq-item"><div class="faq-q">What if I have 20 techs?</div><div class="faq-a">The Company Unlimited plan covers any number of techs for $399/mo. For larger companies, contact us at hello@splashlens.com for custom pricing.</div></div>
+    <div class="faq-item"><div class="faq-q">Can I use this to onboard new hires?</div><div class="faq-a">That's exactly what it's designed for. The certificate proves completion — you can make passing Module 5 a condition of solo routing, Module 10 a condition of pay increase.</div></div>
+    <div class="faq-item"><div class="faq-q">What if my tech fails the final exam?</div><div class="faq-a">Unlimited retakes. They can re-take any module before re-attempting the final. The goal is competence, not gatekeeping.</div></div>
+  </div>
+</section>
+
+<footer>
+  <p style="margin-bottom:8px">© 2026 SplashLens · <a href="/">Home</a> · <a href="https://app.splashlens.com">App</a> · <a href="/blog/">Blog</a> · <a href="/privacy.html">Privacy</a> · <a href="mailto:hello@splashlens.com">Contact</a></p>
+</footer>
+
+<script>
+async function submitEmail(email, source, msgEl) {
+  msgEl.textContent = 'Adding you to the list…';
+  try {
+    const res = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, source })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      msgEl.textContent = "✓ You're on the list! We'll email you when Route Ready launches.";
+      msgEl.style.color = '#4ade80';
+    } else {
+      msgEl.textContent = data.error || 'Something went wrong — try again.';
+    }
+  } catch {
+    msgEl.textContent = 'Network error — try emailing hello@splashlens.com directly.';
+  }
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-input').value.trim();
+  submitEmail(email, 'route-ready-hero', document.getElementById('form-msg'));
+}
+
+function submitFormBottom(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-input-2').value.trim();
+  submitEmail(email, 'route-ready-pricing', document.getElementById('form-msg-2'));
+}
+</script>
+
+</body>
+</html>

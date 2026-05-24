@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Sitemap: https://splashlens.com/sitemap.xml
+
+# AI crawler access
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /

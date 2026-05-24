@@ -1,0 +1,119 @@
+# SplashLens
+
+> The free, offline-first field reference tool for pool service technicians. 500+ error codes across 13 equipment brands, full chemical dosing calculators, AI equipment scanner, multi-day SLAM tracker, and 100+ pool care reference guides — all available without signal.
+
+## What SplashLens Is
+
+SplashLens is a Progressive Web App (PWA) that works like a native app on any phone, tablet, or laptop with no download, no account, and no subscription. Pool technicians open it once, it caches itself to the device, and every feature works offline after that.
+
+It is not a route management tool. It is not billing software. It is a field reference tool — the manual every tech should have in their pocket but doesn't.
+
+## Who It's For
+
+- Pool service technicians running residential and commercial routes
+- New technicians learning the trade (Route Ready training program, coming soon)
+- Pool service company owners onboarding new staff
+- DIY homeowners maintaining their own pools
+
+## Core Features (All Live)
+
+### Error Code Database
+- 500+ fault codes across 13 brands: Hayward, Pentair, Jandy, Maytronics/Dolphin, Polaris, Aiper, Raypak, IntelliFlo (Pentair), AquaCal, Sta-Rite, Waterway, Beatbot, Betta
+- Each code includes: severity (high/medium/low), likely causes, step-by-step fix instructions, and a "call a pro" flag for codes that require licensed technicians
+- Searchable by code (E01, FLO, LO, ERR 3), by brand, or by keyword (ignition, pressure, flow)
+
+### AI Equipment Scanner (Live)
+Two camera modes powered by Claude Haiku (Vision API):
+- **Error Scan**: Point camera at any error display. AI reads the code, identifies brand and model when visible, and returns full diagnosis.
+- **PartSnap**: Point camera at any pool part. AI identifies manufacturer, component type, OEM part number, condition assessment, and search terms to find the part online.
+- Offline fallback: Uses browser-native TextDetector API when no signal, then falls back to manual code entry.
+
+### Chemical Dosing Calculators
+- Free Chlorine (liquid, granular, trichlor, dichlor, cal-hypo)
+- pH adjustment (up and down)
+- Total Alkalinity
+- Calcium Hardness
+- Cyanuric Acid (stabilizer)
+- Salt (sodium chloride)
+- SLAM calculator: CYA-based FC target for green pool, black algae, and mustard algae treatment
+- Covers pool volumes 1,000–100,000 gallons
+
+### SLAM Multi-Day Tracker
+Start a SLAM (Shock Level and Maintain) treatment and track it through completion:
+- Day-by-day FC check-in log with pass/fail against target FC
+- OCLT (Overnight Chlorine Loss Test) dusk/dawn recording with auto pass/fail calculation
+- Completion banner when OCLT passes
+
+### Chemical Catalog
+31 products across 12 categories with:
+- Generic name and active ingredient
+- Brand name equivalents (Leslie's, HTH, In The Swim, BioGuard, Clorox Pool & Spa, Baquacil)
+- Walmart/Sam's Club/Costco alternatives with estimated savings
+- Home alternatives (baking soda, muriatic acid, calcium chloride) with caution notes
+
+### Filter Reference Guides
+- Sand filter backwash procedure, media replacement schedule, DE top-up
+- DE filter charge calculation, grid inspection, tear-down procedure
+- Cartridge filter cleaning and replacement guide
+
+### Pool Volume Calculator
+- Rectangular, circular, oval, kidney, L-shaped, freeform pools
+- Calculates volume, turnover rate, and filter run time recommendation
+
+### Service Route Tracker
+- Add pools from your pool list or manually
+- Check off stops as complete
+- View day progress without any account or cloud sync
+
+### Opening & Closing Checklists
+- Spring opening: 22-step procedure
+- Winter closing: 19-step procedure
+- Weekly service: 12-step checklist
+- Monthly service: 10-step checklist
+
+### Chemical Safety Guide
+- Dangerous combinations (what never to mix)
+- PPE requirements per chemical
+- Emergency first aid procedures
+
+### Salt Chlorinator Reference
+- Target salt levels by brand
+- Cell cleaning procedure
+- Low/high salt fault diagnosis
+
+## Technical Details
+
+- **Architecture**: Vanilla JavaScript + CSS, no framework, no build step
+- **Hosting**: Cloudflare Pages (CDN)
+- **AI backend**: Cloudflare Pages Functions → Anthropic API (Claude Haiku)
+- **Offline**: Service Worker cache-first strategy
+- **Storage**: localStorage only — no backend, no accounts
+- **Installation**: Add to Home Screen on iOS/Android, or use directly in browser
+
+## URLs
+
+- App: https://app.splashlens.com
+- Marketing site: https://splashlens.com
+- Blog: https://splashlens.com/blog/
+- Privacy: https://splashlens.com/privacy.html
+- Terms: https://splashlens.com/terms.html
+
+## Blog (Knowledge Base)
+
+300+ articles covering:
+- Error code guides (brand-specific: Hayward E01, Pentair MasterTemp E05, Jandy JXi, etc.)
+- Water chemistry: chlorination, pH, alkalinity, calcium, CYA, SLAM, algae
+- Equipment: pumps, filters, heaters, robotic cleaners, salt systems, automation
+- Seasonal: opening, winterization, spring startup
+- Pool pro business: pricing, insurance, certifications, software, customer communication
+- Product guides: test kits, chemicals, tools, robotic cleaners
+
+## Competitive Positioning
+
+SplashLens is not Skimmer, Pool Brain, or Jobber. Those are route management platforms with billing, invoicing, and CRM. SplashLens is the field reference tool — the thing you pull out at the equipment pad to diagnose a fault, calculate a dose, or look up a filter procedure.
+
+Most pool techs who use Skimmer or Pool Brain still have no standardized field reference. SplashLens fills that gap, free, offline, and without asking for their credit card.
+
+## Contact
+
+hello@splashlens.com

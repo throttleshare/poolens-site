@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IntelliFlo Variable Speed Pump: Setup and Speed Schedule Guide | SplashLens</title>
+<meta name="description" content="Complete IntelliFlo VSF and VS+SVRS setup guide: programming speed schedules, GPM targets, automation integration, and energy-saving recommendations.">
+<meta property="og:title" content="IntelliFlo Variable Speed Pump: Setup and Speed Schedule Guide">
+<meta property="og:description" content="Complete IntelliFlo VSF and VS+SVRS setup guide: programming speed schedules, GPM targets, automation integration, and energy-saving recommendations.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://splashlens.com/blog/intelliflo-variable-speed-setup.html">
+<meta property="og:image" content="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&h=400&fit=crop&auto=format&q=80">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://splashlens.com/blog/intelliflo-variable-speed-setup.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"IntelliFlo Variable Speed Pump: Setup and Speed Schedule Guide","datePublished":"2025-09-30","dateModified":"2025-09-30","author":{"@type":"Organization","name":"SplashLens","url":"https://splashlens.com"},"publisher":{"@type":"Organization","name":"SplashLens"},"image":"https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&h=400&fit=crop&auto=format&q=80","description":"Complete IntelliFlo setup guide: programming speed schedules, GPM targets, and automation integration.","url":"https://splashlens.com/blog/intelliflo-variable-speed-setup.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between IntelliFlo VS and IntelliFlo VSF?","acceptedAnswer":{"@type":"Answer","text":"The IntelliFlo VS programs by RPM only. The IntelliFlo VSF (Variable Speed and Flow) adds a flow meter and can be programmed in gallons per minute — the pump self-adjusts RPM to maintain the target flow rate as the filter loads up."}},{"@type":"Question","name":"What GPM should I set my IntelliFlo pump for filtration?","acceptedAnswer":{"@type":"Answer","text":"Calculate the required GPM by dividing pool volume by the target turnover time in minutes. For a 20,000-gallon pool with 8-hour turnover: 20,000 ÷ 480 = 42 GPM. Round up to 45–50 GPM for a comfortable margin."}},{"@type":"Question","name":"How many speed programs can an IntelliFlo pump store?","acceptedAnswer":{"@type":"Answer","text":"The IntelliFlo VS and VSF store up to 8 programmable speed or flow settings. When integrated with IntelliCenter or ScreenLogic, the automation system controls which program runs and when."}},{"@type":"Question","name":"Why is my IntelliFlo displaying a drive temperature fault?","acceptedAnswer":{"@type":"Answer","text":"A drive temperature fault means the variable frequency drive (VFD) is overheating. Common causes: the pump is installed in an enclosure without adequate ventilation, the cooling fan has failed, or the pump is running at high speed in direct sunlight in a hot climate."}}]}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:#fff;color:#0f172a;line-height:1.7}
+nav{background:#0369a1;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+.nav-logo{color:white;font-weight:800;font-size:1.1rem;text-decoration:none}
+.nav-cta{background:white;color:#0369a1;padding:7px 18px;border-radius:100px;font-weight:700;font-size:.85rem;text-decoration:none}
+.hero-img{width:100%;height:320px;object-fit:cover;display:block}
+.container{max-width:800px;margin:0 auto;padding:0 20px}
+.breadcrumb{font-size:.8rem;color:#64748b;padding:14px 0}
+.breadcrumb a{color:#0284c7;text-decoration:none}
+h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;margin:24px 0 16px}
+.post-meta{color:#64748b;font-size:.85rem;margin-bottom:28px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.post-tag{background:#e0f2fe;color:#0369a1;padding:3px 12px;border-radius:100px;font-size:.75rem;font-weight:700}
+h2{font-size:1.4rem;font-weight:800;margin:36px 0 14px}
+h3{font-size:1.15rem;font-weight:700;margin:28px 0 10px}
+p{margin-bottom:18px;font-size:1rem;color:#334155}
+ul,ol{margin:0 0 18px 22px}
+li{margin-bottom:8px;font-size:1rem;color:#334155;line-height:1.6}
+.callout{background:#f0f9ff;border-left:4px solid #0284c7;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0}
+.callout p{margin:0;color:#0369a1;font-weight:500}
+.warning-box{background:#fff7ed;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0}
+.warning-box p{margin:0;color:#92400e}
+table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.9rem}
+th{background:#0369a1;color:white;padding:12px 16px;text-align:left}
+td{padding:10px 16px;border-bottom:1px solid #e2e8f0}
+tr:nth-child(even) td{background:#f8fafc}
+.app-cta{background:linear-gradient(135deg,#0369a1,#0284c7);border-radius:14px;padding:32px;text-align:center;margin:48px 0}
+.app-cta h3{color:white;font-size:1.3rem;margin-bottom:10px}
+.app-cta p{color:rgba(255,255,255,.85);margin-bottom:20px}
+.app-cta a{background:white;color:#0369a1;padding:12px 28px;border-radius:100px;font-weight:700;text-decoration:none;display:inline-block}
+.related{background:#f8fafc;border-radius:12px;padding:24px;margin:40px 0;border:1px solid #e2e8f0}
+.related h3{font-size:1rem;margin-bottom:14px}
+.related-links{display:flex;flex-direction:column;gap:10px}
+.related-links a{color:#0284c7;text-decoration:none;font-size:.9rem;font-weight:500}
+.faq-section{margin:48px 0}
+.faq-item{border-bottom:1px solid #e2e8f0;padding:20px 0}
+.faq-q{font-weight:700;font-size:1rem;margin-bottom:10px}
+.faq-a{color:#334155;font-size:.95rem;margin:0}
+footer{background:#0f172a;color:#94a3b8;padding:32px 24px;text-align:center;font-size:.85rem;margin-top:60px}
+footer a{color:#7dd3fc;text-decoration:none}
+@media(max-width:640px){.hero-img{height:220px}}
+</style>
+</head>
+<body>
+<nav><a href="/" class="nav-logo">SplashLens</a><a href="https://app.splashlens.com" class="nav-cta">Open App Free →</a></nav>
+<img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&h=400&fit=crop&auto=format&q=80" alt="Pentair IntelliFlo variable speed pump installation" class="hero-img" loading="lazy">
+<div class="container">
+<div class="breadcrumb"><a href="/">SplashLens</a> › <a href="/blog/">Blog</a> › Equipment</div>
+<h1>IntelliFlo Variable Speed Pump: Setup and Speed Schedule Guide</h1>
+<div class="post-meta"><span>📅 September 30, 2025</span><span class="post-tag">Equipment</span><span>⏱ 7 min read</span></div>
+
+<p>The Pentair IntelliFlo is the most widely installed variable speed pool pump in the residential market. It's well-engineered, well-supported, and when properly programmed it delivers significant energy savings. When poorly programmed — which is more common than it should be — it either fails to achieve turnover or runs too fast to save meaningful electricity. This guide covers proper setup for both the VS (RPM-based) and VSF (flow-based) versions.</p>
+
+<h2>IntelliFlo VS vs VSF: Which Do You Have?</h2>
+
+<p>Look at the pump's display panel. The <strong>IntelliFlo VS</strong> (model numbers: PF2VS015 and similar) programs speeds in RPM only. The <strong>IntelliFlo VSF</strong> (model numbers: PF2VSF015 and similar) has a built-in flow meter and can program in GPM — the pump automatically adjusts RPM to maintain the target flow rate as the filter loads with debris.</p>
+
+<p>The VSF is superior for most installations because flow stays constant regardless of filter condition. As a filter loads, a VS pump running at fixed RPM will deliver less flow, potentially dropping below turnover requirements.</p>
+
+<h2>Step 1: Calculate Required Turnover Flow Rate</h2>
+
+<p>Before programming any speed settings, know what flow rate the pool actually needs:</p>
+
+<p><strong>Formula:</strong> Pool Volume (gallons) ÷ Turnover Time (minutes) = Required GPM</p>
+
+<p>Example: 20,000-gallon pool, 8-hour turnover target = 20,000 ÷ 480 = 41.7 GPM → program 45 GPM with a small margin.</p>
+
+<table>
+<tr><th>Pool Volume</th><th>8-hr Turnover GPM</th><th>Suggested Setting</th></tr>
+<tr><td>10,000 gal</td><td>21 GPM</td><td>25 GPM</td></tr>
+<tr><td>15,000 gal</td><td>31 GPM</td><td>35 GPM</td></tr>
+<tr><td>20,000 gal</td><td>42 GPM</td><td>45 GPM</td></tr>
+<tr><td>25,000 gal</td><td>52 GPM</td><td>55 GPM</td></tr>
+<tr><td>30,000 gal</td><td>63 GPM</td><td>65–70 GPM</td></tr>
+</table>
+
+<h2>Step 2: Programming Speed Schedules on the IntelliFlo</h2>
+
+<p>The IntelliFlo supports 8 programmable speed settings (Programs 1–8). A typical residential programming approach:</p>
+
+<ul>
+<li><strong>Program 1 — Filtration (day):</strong> Target GPM for your pool volume, 8–10 hours</li>
+<li><strong>Program 2 — Overnight:</strong> 15–20 GPM / 900–1,200 RPM — just enough to prevent algae</li>
+<li><strong>Program 3 — Feature speed:</strong> 60–80 GPM for waterfalls, spa jets, or cleaner operation</li>
+<li><strong>Program 4 — Backwash:</strong> 3,000–3,450 RPM for adequate backwash pressure</li>
+</ul>
+
+<h3>Programming via the Pump Keypad (Standalone, No Automation)</h3>
+<ol>
+<li>Press and hold the "Menu" button until the display shows "PROGRAM"</li>
+<li>Select Program number (1–8)</li>
+<li>Enter RPM or GPM for that program</li>
+<li>Set run time (hours/minutes) for that program</li>
+<li>Repeat for each program needed</li>
+<li>Set clock: press "Clock" button and set current time and day</li>
+</ol>
+
+<h3>Programming via IntelliCenter or ScreenLogic Automation</h3>
+<p>When the IntelliFlo is wired to a Pentair IntelliCenter or ScreenLogic system, all speed scheduling is done through the automation interface. The pump's local schedule is overridden by the automation system. Set pump speeds within each circuit definition in the automation panel, not on the pump itself.</p>
+
+<div class="callout"><p>Record all IntelliFlo program settings in <a href="https://app.splashlens.com">SplashLens</a> per account. When a customer reports "the pump is running but nothing works" after an automation update, having the original speed settings documented makes reset fast and accurate.</p></div>
+
+<h2>Step 3: Verify Actual Flow and Turnover</h2>
+
+<p>After programming, verify the pool is actually turning over. Methods:</p>
+<ul>
+<li><strong>Flow meter (if installed):</strong> Read directly in GPM</li>
+<li><strong>IntelliFlo VSF display:</strong> Shows actual GPM being delivered</li>
+<li><strong>Return jet velocity:</strong> Qualitative only — jets should have moderate resistance to your hand</li>
+<li><strong>Chemical distribution:</strong> Add dye or check chemical spread over 15–20 minutes with minimal pump speed</li>
+</ul>
+
+<h2>Common IntelliFlo Setup Mistakes</h2>
+
+<h3>Programming RPM Too Low for the Pool Size</h3>
+<p>A 30,000-gallon pool programmed at 1,200 RPM for 8 hours is not turning over. Flow at 1,200 RPM on most IntelliFlo models is 15–20 GPM — enough for a 10,000-gallon pool, not a 30,000-gallon one. Always verify the math.</p>
+
+<h3>Not Setting a Minimum Speed for Heater Operation</h3>
+<p>Most gas heaters require a minimum flow of 25–30 GPM to allow ignition. If the automation system runs the pump at a filtration speed below this threshold when the heater calls for heat, the heater won't fire. Program a "heater speed" of at least 40–50 GPM and configure the automation to switch to it when the heater activates.</p>
+
+<h3>Leaving the Default Factory Settings</h3>
+<p>IntelliFlo pumps ship with default programs that are rarely appropriate for any specific installation. Always program for the actual pool — never assume defaults are correct.</p>
+
+<div class="app-cta"><h3>Store IntelliFlo Program Settings for Every Account</h3><p>SplashLens keeps pump speed settings, program assignments, and automation notes per pool — so pump reprogramming after a power outage or automation reset takes minutes, not an hour of trial and error.</p><a href="https://app.splashlens.com">Open SplashLens Free →</a></div>
+
+<div class="faq-section"><h2>Frequently Asked Questions</h2>
+<div class="faq-item"><div class="faq-q">What is the difference between IntelliFlo VS and IntelliFlo VSF?</div><p class="faq-a">The IntelliFlo VS programs by RPM only. The IntelliFlo VSF adds a flow meter and can be programmed in gallons per minute — the pump self-adjusts RPM to maintain the target flow rate as the filter loads up.</p></div>
+<div class="faq-item"><div class="faq-q">What GPM should I set my IntelliFlo pump for filtration?</div><p class="faq-a">Calculate the required GPM by dividing pool volume by the target turnover time in minutes. For a 20,000-gallon pool with 8-hour turnover: 20,000 ÷ 480 = 42 GPM. Round up to 45–50 GPM for a comfortable margin.</p></div>
+<div class="faq-item"><div class="faq-q">How many speed programs can an IntelliFlo pump store?</div><p class="faq-a">The IntelliFlo VS and VSF store up to 8 programmable speed or flow settings. When integrated with IntelliCenter or ScreenLogic, the automation system controls which program runs and when.</p></div>
+<div class="faq-item"><div class="faq-q">Why is my IntelliFlo displaying a drive temperature fault?</div><p class="faq-a">A drive temperature fault means the variable frequency drive is overheating. Common causes: the pump is installed in an enclosure without adequate ventilation, the cooling fan has failed, or the pump is running at high speed in direct sunlight in a hot climate.</p></div>
+</div>
+
+<div class="related"><h3>Related Guides</h3><div class="related-links">
+<a href="/blog/variable-speed-pump-benefits.html">Variable Speed Pool Pumps: Are They Worth It?</a>
+<a href="/blog/pool-automation-systems-guide.html">Pool Automation Systems: Hayward vs Pentair vs Jandy Compared</a>
+<a href="/blog/pool-pump-wont-prime.html">Pool Pump Won't Prime: 8 Common Causes and Fixes</a>
+</div></div>
+</div>
+<footer><p>© 2026 SplashLens · <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p><p style="margin-top:8px">Free field reference for pool pros. Not affiliated with Hayward, Pentair, or Jandy.</p></footer>
+</body></html>

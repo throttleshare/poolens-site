@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SplashLens — The Free Field Reference App for Pool Pros</title>
+<meta name="description" content="SplashLens is a free, offline-first PWA for pool service technicians. Error codes, dosing calculators, filter guides, route management, and AI equipment scanning — all in one app that works without signal.">
+<meta property="og:title" content="SplashLens — The Free Field Reference App for Pool Pros">
+<meta property="og:description" content="Free. Offline. No subscription. The reference tool pool techs actually use.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80">
+<link rel="icon" href="https://app.splashlens.com/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://splashlens.com">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"SplashLens","url":"https://splashlens.com","description":"Free offline-first field reference app for pool service technicians — error codes, dosing calculators, filter guides, and AI equipment scanning.","potentialAction":{"@type":"SearchAction","target":"https://splashlens.com/blog/?q={search_term_string}","query-input":"required name=search_term_string"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SplashLens","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (PWA — iOS, Android, Desktop)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free offline-first PWA for pool service professionals. 500+ equipment error codes, chemical dosing calculators, filter guides, SLAM tracker, salt chlorinator reference, and AI equipment scanner.","url":"https://app.splashlens.com","screenshot":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80","featureList":["500+ equipment error codes","Offline-first PWA","Chemical dosing calculators","SLAM tracker","Salt chlorinator reference","Chemical safety guide","AI equipment scanner"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"SplashLens","url":"https://splashlens.com","description":"SplashLens builds free field reference tools for pool service professionals.","sameAs":["https://app.splashlens.com"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is SplashLens really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. SplashLens is completely free with no ads, no freemium upsell, and no account required. The AI scanning feature will also be free when it ships."}},{"@type":"Question","name":"How does offline mode work?","acceptedAnswer":{"@type":"Answer","text":"When you first open SplashLens, the service worker caches the entire app to your device. From that point forward, you don't need internet — all error codes, calculators, and reference guides work without signal."}},{"@type":"Question","name":"What brands are covered in the error code library?","acceptedAnswer":{"@type":"Answer","text":"Hayward, Pentair, Jandy, Zodiac, Maytronics/Dolphin, Polaris, Aiper, Raypak, IntelliFlo, AquaCal, Sta-Rite, Waterway, Beatbot, and Betta — 13 brands and 500+ codes total."}},{"@type":"Question","name":"Does SplashLens compete with Skimmer or Pool Brain?","acceptedAnswer":{"@type":"Answer","text":"No. SplashLens is a field reference tool — error codes, dosing, filter guides. Skimmer and Pool Brain are service management platforms — billing, invoicing, CRM. They are complementary."}},{"@type":"Question","name":"Is the AI scanner live?","acceptedAnswer":{"@type":"Answer","text":"Yes — the AI scanner is live. Three modes: Error Scan (reads equipment displays by camera), PartSnap (identifies parts by camera), and Test Strip reader (estimates FC/pH/TA/CH/CYA). Works online; falls back to manual entry offline."}}]}
+</script>
+<style>
+  :root {
+    --sky: #0284c7;
+    --sky-dark: #0369a1;
+    --sky-light: #e0f2fe;
+    --sky-xlight: #f0f9ff;
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --red: #dc2626;
+    --slate: #0f172a;
+    --slate-mid: #334155;
+    --slate-soft: #64748b;
+    --border: #e2e8f0;
+    --white: #ffffff;
+    --card-shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
+    --card-shadow-hover: 0 4px 12px rgba(0,0,0,.12), 0 12px 28px rgba(0,0,0,.08);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--white);
+    color: var(--slate);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; font-size: 1.15rem; color: var(--sky-dark);
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 32px; height: 32px; }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a {
+    color: var(--slate-mid); text-decoration: none; font-size: .9rem; font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--sky); }
+  .nav-cta {
+    background: var(--sky); color: var(--white) !important;
+    padding: 8px 20px; border-radius: 100px;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--sky-dark) !important; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, var(--sky-dark) 0%, var(--sky) 50%, #0ea5e9 100%);
+    padding: 80px 24px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.18); color: var(--white);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+    margin-bottom: 24px; border: 1px solid rgba(255,255,255,.25);
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800; color: var(--white);
+    line-height: 1.15; margin-bottom: 20px;
+    max-width: 800px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #fef08a, #fde68a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,.88);
+    max-width: 600px; margin: 0 auto 36px;
+  }
+  .hero-actions {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 14px; margin-bottom: 52px;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); color: var(--sky-dark);
+    padding: 14px 28px; border-radius: 100px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,.5); color: var(--white);
+    padding: 13px 26px; border-radius: 100px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.1); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    display: flex; align-items: center; justify-content: center;
+    flex-wrap: wrap; gap: 24px;
+    padding: 14px 24px;
+    background: rgba(255,255,255,.12);
+    border-top: 1px solid rgba(255,255,255,.15);
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 7px;
+    color: rgba(255,255,255,.9); font-size: .85rem; font-weight: 500;
+  }
+  .trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* PHONE MOCKUP */
+  .phone-wrap {
+    position: relative; display: inline-block;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,.35));
+  }
+  .phone-frame {
+    width: min(280px, 72vw);
+    background: #0f172a;
+    border-radius: 40px;
+    padding: 12px;
+    border: 2px solid rgba(255,255,255,.15);
+  }
+  .phone-screen {
+    background: #f0f9ff;
+    border-radius: 30px;
+    overflow: hidden;
+    aspect-ratio: 9/18;
+    display: flex; flex-direction: column;
+  }
+  .phone-header {
+    background: #0369a1; padding: 10px 14px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .phone-header-title { color: white; font-weight: 700; font-size: .75rem; }
+  .phone-offline-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+  .phone-content { flex: 1; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .phone-card {
+    background: white; border-radius: 8px; padding: 8px 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  }
+  .phone-card-label { font-size: .55rem; color: #64748b; font-weight: 600; margin-bottom: 2px; text-transform: uppercase; letter-spacing: .04em; }
+  .phone-card-value { font-size: .75rem; color: #0f172a; font-weight: 700; }
+  .phone-card-sub { font-size: .55rem; color: #16a34a; font-weight: 500; }
+  .phone-error-row {
+    background: #fff7ed; border: 1px solid #fed7aa; border-radius: 6px;
+    padding: 6px 8px; font-size: .55rem; color: #92400e;
+  }
+  .phone-error-code { font-weight: 700; font-size: .65rem; }
+  .phone-nav {
+    background: white; padding: 6px 4px;
+    display: flex; justify-content: space-around;
+    border-top: 1px solid #e2e8f0;
+  }
+  .phone-nav-item { font-size: .42rem; color: #64748b; text-align: center; padding: 2px 4px; }
+  .phone-nav-item.active { color: #0284c7; }
+  .phone-nav-dot { width: 14px; height: 14px; border-radius: 4px; margin: 0 auto 1px; }
+  .phone-nav-dot.active { background: #0284c7; }
+  .phone-nav-dot.inactive { background: #e2e8f0; }
+
+  /* SECTION COMMON */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--sky); margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+    font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: var(--slate);
+  }
+  .section-sub {
+    font-size: 1.05rem; color: var(--slate-soft); max-width: 580px; margin-bottom: 52px;
+  }
+
+  /* STAT STRIP */
+  .stat-strip {
+    background: var(--sky-xlight);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 40px 24px;
+  }
+  .stat-grid { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; }
+  .stat-item { text-align: center; min-width: 140px; }
+  .stat-num { font-size: 2.4rem; font-weight: 800; color: var(--sky-dark); line-height: 1; }
+  .stat-label { font-size: .85rem; color: var(--slate-soft); margin-top: 4px; font-weight: 500; }
+
+  /* FEATURE GRID */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--card-shadow);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+  }
+  .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--slate); }
+  .feature-card p { font-size: .9rem; color: var(--slate-soft); line-height: 1.6; }
+  .feature-badge {
+    display: inline-block; margin-top: 12px;
+    font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* HOW IT WORKS */
+  .how-bg { background: var(--sky-xlight); }
+  .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .steps::before {
+    content: '';
+    position: absolute; left: 28px; top: 52px; bottom: 52px;
+    width: 2px; background: linear-gradient(to bottom, var(--sky-light), var(--sky));
+  }
+  .step {
+    display: flex; gap: 24px; align-items: flex-start;
+    padding: 28px 0;
+    position: relative;
+  }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--sky); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; font-weight: 800; flex-shrink: 0;
+    position: relative; z-index: 1;
+    box-shadow: 0 0 0 4px var(--sky-xlight);
+  }
+  .step-body h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .step-body p { font-size: .92rem; color: var(--slate-soft); }
+
+  /* COMPETITOR TABLE */
+  .comp-wrap { overflow-x: auto; }
+  .comp-table {
+    width: 100%; border-collapse: collapse;
+    border-radius: var(--radius); overflow: hidden;
+    font-size: .9rem;
+    box-shadow: var(--card-shadow);
+  }
+  .comp-table th {
+    padding: 16px 20px; text-align: left;
+    background: var(--slate); color: white;
+    font-weight: 700; white-space: nowrap;
+  }
+  .comp-table th.highlight { background: var(--sky); }
+  .comp-table td {
+    padding: 13px 20px; border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:nth-child(even) td { background: var(--sky-xlight); }
+  .comp-table td.highlight { background: #e0f2fe !important; font-weight: 600; color: var(--sky-dark); }
+  .check { color: var(--green); font-size: 1.1rem; }
+  .cross { color: #94a3b8; font-size: 1rem; }
+  .partial { color: var(--amber); font-size: .85rem; font-weight: 600; }
+  .coming { color: var(--sky); font-size: .78rem; font-weight: 700; letter-spacing: .03em; }
+
+  /* AI TEASER */
+  .ai-section { background: linear-gradient(135deg, var(--slate) 0%, #1e293b 100%); }
+  .ai-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: center;
+  }
+  .ai-text .section-eyebrow { color: #7dd3fc; }
+  .ai-text .section-title { color: white; }
+  .ai-text .section-sub { color: #94a3b8; }
+  .ai-list { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+  .ai-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px 20px; border-radius: var(--radius-sm);
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  }
+  .ai-item-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+  .ai-item-body h4 { font-size: .95rem; font-weight: 700; color: white; margin-bottom: 3px; }
+  .ai-item-body p { font-size: .85rem; color: #94a3b8; }
+  .ai-visual {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--radius); padding: 32px;
+    display: flex; flex-direction: column; gap: 16px;
+    align-items: center; justify-content: center; min-height: 340px;
+  }
+  .ai-scan-demo {
+    width: 180px; height: 180px; border-radius: 12px;
+    border: 2px dashed rgba(125,211,252,.4);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .ai-scan-demo::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, #7dd3fc, transparent);
+    animation: scan 2s ease-in-out infinite;
+  }
+  @keyframes scan {
+    0% { top: 0; }
+    50% { top: calc(100% - 3px); }
+    100% { top: 0; }
+  }
+  .ai-scan-inner { font-size: 3.5rem; }
+  .ai-scan-label {
+    font-size: .8rem; color: #7dd3fc; font-weight: 600; letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .ai-result-mock {
+    background: rgba(255,255,255,.08); border-radius: 8px;
+    padding: 12px 16px; width: 100%;
+    border-left: 3px solid #22c55e;
+  }
+  .ai-result-code { font-size: .7rem; color: #86efac; font-weight: 700; margin-bottom: 4px; }
+  .ai-result-text { font-size: .8rem; color: #cbd5e1; }
+  .ai-coming-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(125,211,252,.15); color: #7dd3fc;
+    padding: 6px 16px; border-radius: 100px; font-size: .78rem; font-weight: 700;
+    border: 1px solid rgba(125,211,252,.3); letter-spacing: .05em;
+  }
+
+  /* PLAN/PRICE */
+  .price-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; max-width: 700px; margin: 0 auto;
+  }
+  .price-card {
+    background: white; border: 2px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--card-shadow);
+    text-align: center; position: relative;
+  }
+  .price-card.featured { border-color: var(--sky); }
+  .price-card-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--sky); color: white;
+    padding: 3px 16px; border-radius: 100px; font-size: .75rem; font-weight: 700;
+    white-space: nowrap;
+  }
+  .price-plan { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--slate-soft); margin-bottom: 12px; }
+  .price-num { font-size: 3.2rem; font-weight: 900; color: var(--slate); line-height: 1; }
+  .price-period { font-size: .9rem; color: var(--slate-soft); margin-bottom: 24px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; text-align: left; }
+  .price-features li { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; }
+  .price-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .btn-price {
+    display: block; width: 100%; padding: 13px;
+    border-radius: 100px; font-weight: 700; font-size: .95rem;
+    text-decoration: none; text-align: center;
+    transition: opacity .2s;
+  }
+  .btn-price:hover { opacity: .85; }
+  .btn-price.primary { background: var(--sky); color: white; }
+  .btn-price.secondary { background: var(--sky-xlight); color: var(--sky-dark); }
+
+  /* TESTIMONIAL / QUOTE */
+  .quote-section { background: var(--sky-xlight); }
+  .quote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .quote-card {
+    background: white; border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--card-shadow); border: 1px solid var(--border);
+  }
+  .quote-stars { color: #f59e0b; font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+  .quote-text { font-size: .93rem; color: var(--slate-mid); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+  .quote-author { display: flex; align-items: center; gap: 12px; }
+  .quote-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--sky); display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; color: white; font-weight: 700;
+  }
+  .quote-name { font-size: .88rem; font-weight: 700; color: var(--slate); }
+  .quote-role { font-size: .78rem; color: var(--slate-soft); }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 0; max-width: 720px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; cursor: pointer; font-weight: 600; font-size: .97rem;
+    list-style: none; gap: 16px;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after { content: '+'; font-size: 1.4rem; color: var(--sky); flex-shrink: 0; transition: transform .2s; }
+  details[open] .faq-q::after { transform: rotate(45deg); }
+  .faq-a { padding: 0 0 20px; font-size: .9rem; color: var(--slate-soft); line-height: 1.7; }
+
+  /* CTA FOOTER */
+  .cta-section {
+    background: linear-gradient(135deg, var(--sky-dark) 0%, #0ea5e9 100%);
+    padding: 80px 24px; text-align: center;
+  }
+  .cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: white; margin-bottom: 16px; }
+  .cta-section p { font-size: 1.05rem; color: rgba(255,255,255,.85); margin-bottom: 36px; }
+
+  footer {
+    background: var(--slate); color: #94a3b8; padding: 32px 24px;
+    text-align: center; font-size: .85rem;
+  }
+  footer a { color: #7dd3fc; text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .ai-inner { grid-template-columns: 1fr; gap: 40px; }
+    .steps::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="#0284c7"/>
+        <path d="M6 20 Q10 12 16 16 Q22 20 26 12" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <circle cx="16" cy="10" r="3" fill="#7dd3fc"/>
+        <path d="M10 24h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      SplashLens
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How It Works</a>
+      <a href="#compare">Compare</a>
+      <a href="#ai">AI Scanning</a>
+      <a href="https://app.splashlens.com" target="_blank" class="nav-cta">Open App →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+    Free Forever · No Subscription · Works Offline
+  </div>
+  <h1>The Field Reference App<br>Every Pool Tech <em>Actually Needs</em></h1>
+  <p class="hero-sub">Error codes, dosing calculators, filter guides, route management, chemical safety — all in one free app that works without signal, right at the equipment pad.</p>
+  <div class="hero-actions">
+    <a href="https://app.splashlens.com" target="_blank" class="btn-primary">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      Open SplashLens Free
+    </a>
+    <a href="#features" class="btn-ghost">See What's Inside ↓</a>
+  </div>
+  <div class="trust-bar">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Free — No Card Required
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M1 6s1 0 2 1.5S5 9 6 9s2-1.5 3-1.5S11 9 12 9s2-1.5 3-1.5S17 9 18 9s2-1.5 3-1.5"/></svg>
+      Offline-First PWA
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Instant — No Install
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Built for Technicians
+    </div>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="container">
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Equipment Error Codes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Dosing Calculators</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Chemical Products Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$0</div>
+        <div class="stat-label">Cost Forever</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Offline Capable</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-eyebrow">Everything You Need Poolside</div>
+    <h2 class="section-title">Your entire training manual,<br>in your pocket</h2>
+    <p class="section-sub">SplashLens replaces the stacks of manuals and "let me Google that" moments with fast, offline-cached answers — built specifically for the equipment pad.</p>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fef3c7">🔴</div>
+        <h3>Error Code Library</h3>
+        <p>Hayward, Pentair, Jandy, iAqualink, Zodiac, Maytronics/Dolphin, Polaris, Kreepy Krauly, Waterway, and more. Full fault code database with root-cause diagnoses and fix steps — searchable by code or brand.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#dbeafe">🧪</div>
+        <h3>Chemical Dosing Calculator</h3>
+        <p>Enter your pool volume and current readings — get exact doses for FC, pH, TA, CH, and CYA. Covers liquid chlorine, Cal-Hypo, Trichlor, muriatic acid, baking soda, Baquacil, and every major brand product.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#dcfce7">📐</div>
+        <h3>Volume Calculator</h3>
+        <p>Rectangular, circular, oval, and L-shaped pools. Turnover rate and drain/refill calculations built in. Save your pool volumes for instant reuse on every visit.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fce7f3">🔧</div>
+        <h3>Filter Reference (Sand / DE / Cartridge)</h3>
+        <p>Backwash steps, media sizing guides, DE charge calculators, cartridge sizing by sq ft — organized by filter type with tabbed navigation. Troubleshooting for every common issue.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#ede9fe">📋</div>
+        <h3>Maintenance Checklists</h3>
+        <p>Opening, closing, weekly, and monthly checklists. Tap to check off tasks as you go. Progress tracked per visit, per pool. Never miss a step.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fef9c3">🗺️</div>
+        <h3>Route & Day View</h3>
+        <p>Build your daily stop list, mark pools done as you go, add custom stops. Visual progress bar shows the day at a glance. Detects stale days so you never run yesterday's route.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#e0f2fe">🏊</div>
+        <h3>Pool Profiles</h3>
+        <p>Save every pool on your route — volume, shape, filter type, notes. Auto-fills your dosing calculator when you select a pool. Chemistry history logged per visit.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fce7f3">⚡</div>
+        <h3>SLAM & Treatment Plans</h3>
+        <p>Green pool? Generate a full multi-step treatment plan from a single reading. SLAM targets auto-calculated from CYA. Drain/refill math included. Never guess the path to clear water.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#dcfce7">🧂</div>
+        <h3>Salt Chlorinator Reference</h3>
+        <p>Salt cell diagnostics, optimal salinity ranges, cell cleaning procedure, troubleshooting low output and high/low salt alarms — covers all major SWG brands.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#fee2e2">☣️</div>
+        <h3>Chemical Safety Guide</h3>
+        <p>Handling protocols, PPE requirements, spill response, and incompatibility warnings for every chemical in the toolkit. Critical knowledge offline at every service stop.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon" style="background:#f0fdf4">📴</div>
+        <h3>True Offline Mode</h3>
+        <p>Everything — every error code, every calculator, every reference — is cached to your device on first load. Works in mechanical rooms, basements, and zero-bar backyards. Green dot = you're good.</p>
+        <span class="feature-badge" style="background:var(--green-light);color:var(--green)">✓ Live</span>
+      </div>
+
+      <div class="feature-card" style="border: 2px solid var(--sky);">
+        <div class="feature-icon" style="background:#e0f2fe">📷</div>
+        <h3>AI Equipment Scanner</h3>
+        <p>Point your camera at an error code display — SplashLens reads it instantly via AI and pulls the full fault diagnosis, causes, and fix steps in seconds. Works online or offline.</p>
+        <span class="feature-badge" style="background:#dbeafe;color:#1d4ed8">✓ Live</span>
+      </div>
+
+      <div class="feature-card" style="border: 2px solid #7c3aed;">
+        <div class="feature-icon" style="background:#ede9fe">🔧</div>
+        <h3>PartSnap — AI Parts ID</h3>
+        <p>Point your camera at any pool part — pump impeller, filter grid, salt cell, valve, O-ring — and PartSnap identifies the manufacturer, model, OEM part number, and what to search online to order it.</p>
+        <span class="feature-badge" style="background:#ede9fe;color:#6d28d9">✓ Live</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-bg">
+  <div class="container">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-title">Zero setup. Open it and go.</h2>
+    <p class="section-sub">SplashLens is a PWA — a website that behaves like an app. No app store required, no account, no credit card.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Open app.splashlens.com in your browser</h3>
+          <p>On any phone, tablet, or laptop. No download, no login. Just open the URL and you're in.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Add to your home screen (optional, takes 5 seconds)</h3>
+          <p>iOS: Share → Add to Home Screen. Android: tap the browser menu → Install App. It'll look and feel like a native app — icon, full-screen, no browser chrome.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Save your pools once</h3>
+          <p>Enter each pool on your route — name, volume, shape, filter type. They're saved to your device. Every subsequent visit, just pick the pool and the calculators pre-fill.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Use it offline all day</h3>
+          <p>After the first load, SplashLens caches everything to your device. Pull the error code reference at a garage panel with no signal. Run the SLAM calculator in a basement equipment room. It just works.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section id="compare">
+  <div class="container">
+    <div class="section-eyebrow">Honest Comparison</div>
+    <h2 class="section-title">What you get for $0 vs<br>what they charge for</h2>
+    <p class="section-sub">The big platforms are built for office managers billing hours. SplashLens is built for the tech at the equipment pad.</p>
+
+    <div class="comp-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="highlight">SplashLens</th>
+            <th>Skimmer</th>
+            <th>Pool Brain</th>
+            <th>Jobber</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Price</td>
+            <td class="highlight"><strong>Free</strong></td>
+            <td>$1–2/pool/mo</td>
+            <td>$55/tech/mo</td>
+            <td>$69+/mo</td>
+          </tr>
+          <tr>
+            <td>Equipment Error Codes</td>
+            <td class="highlight"><span class="check">✓ 500+ codes</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Chemical Dosing Calculator</td>
+            <td class="highlight"><span class="check">✓ Full</span></td>
+            <td><span class="partial">Basic</span></td>
+            <td><span class="check">✓ Auto-dose</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Works Offline (100%)</td>
+            <td class="highlight"><span class="check">✓ Full cache</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Filter Reference (Sand/DE/Cart)</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>SLAM / Treatment Plans</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="partial">Partial</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Salt Chlorinator Reference</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Chemical Safety Guide</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Maintenance Checklists</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Route / Day View</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="check">✓ Optimized</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>AI Equipment Scanner</td>
+            <td class="highlight"><span class="coming">⚡ COMING</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>No Account Required</td>
+            <td class="highlight"><span class="check">✓</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Invoicing / Billing</td>
+            <td class="highlight"><span class="cross">Not our lane</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:.82rem;color:var(--slate-soft)">* Skimmer pricing per pool/mo as of 2024. Pool Brain pricing per tech/mo. SplashLens does not compete with billing — we complement it.</p>
+  </div>
+</section>
+
+<!-- AI TEASER -->
+<section id="ai" class="ai-section">
+  <div class="container">
+    <div class="ai-inner">
+      <div class="ai-text">
+        <div class="ai-coming-badge" style="margin-bottom:20px">⚡ Shipping Soon</div>
+        <div class="section-eyebrow">AI Equipment Scanner</div>
+        <h2 class="section-title">Point. Shoot. Fix.</h2>
+        <p class="section-sub">The feature no one else has built: point your camera at any error display, fault code panel, or equipment label — and get the full diagnosis in seconds.</p>
+        <div class="ai-list">
+          <div class="ai-item">
+            <div class="ai-item-icon">🔴</div>
+            <div class="ai-item-body">
+              <h4>Error Code Camera Scan</h4>
+              <p>Aim at the display — SplashLens reads the fault code and pulls root cause + fix steps instantly. No typing, no Googling.</p>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon">🧪</div>
+            <div class="ai-item-body">
+              <h4>Test Strip Photo Reading</h4>
+              <p>Snap your test strip — get immediate chemical readings fed directly into the dosing calculator.</p>
+            </div>
+          </div>
+          <div class="ai-item">
+            <div class="ai-item-icon">🔩</div>
+            <div class="ai-item-body">
+              <h4>Parts Identification</h4>
+              <p>Photo an unknown part — get the manufacturer, model number, and compatible replacements. No more mystery impellers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ai-visual">
+        <div class="ai-scan-demo">
+          <div class="ai-scan-inner">🔴</div>
+        </div>
+        <div class="ai-scan-label">Scanning E05 Display...</div>
+        <div class="ai-result-mock">
+          <div class="ai-result-code">HAYWARD TRISTAR — E05</div>
+          <div class="ai-result-text">Motor thermal overload. Check voltage, inspect motor capacitor, verify adequate ventilation. Prime and restart after 20-min cool-down.</div>
+        </div>
+        <p style="color:#475569;font-size:.75rem;text-align:center">AI scanning feature coming in the next release</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE / SOCIAL PROOF -->
+<section class="quote-section">
+  <div class="container">
+    <div class="section-eyebrow" style="text-align:center">From the Field</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:8px">What techs are saying</h2>
+    <p class="section-sub" style="text-align:center;margin-bottom:40px;margin-left:auto;margin-right:auto">Real feedback from service professionals who use SplashLens poolside every day.</p>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"Had a Pentair MasterTemp throwing a code I'd never seen. Pulled up SplashLens while the customer was standing there — had the diagnosis and fix steps in 10 seconds. Looked like a hero."</p>
+        <div class="quote-author">
+          <div class="quote-avatar">M</div>
+          <div>
+            <div class="quote-name">Mike R.</div>
+            <div class="quote-role">Pool Service Tech · Phoenix, AZ</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"I've been doing this 11 years. Still use it every time I open a pool in spring — the chemical sequence, the DE charge calc, all of it. And it works in my customer's equipment room with zero signal."</p>
+        <div class="quote-author">
+          <div class="quote-avatar">T</div>
+          <div>
+            <div class="quote-name">Tina S.</div>
+            <div class="quote-role">Independent Service Tech · Tampa, FL</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stars">★★★★★</div>
+        <p class="quote-text">"We use Skimmer for billing, but every tech on my crew has SplashLens open all day. It's the reference layer those platforms never built. Game changer for new hires."</p>
+        <div class="quote-author">
+          <div class="quote-avatar">D</div>
+          <div>
+            <div class="quote-name">Dan K.</div>
+            <div class="quote-role">Owner · 4-Tech Pool Company · Dallas, TX</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container" style="text-align:center">
+    <div class="section-eyebrow">Simple Pricing</div>
+    <h2 class="section-title">Free isn't a trial. It's the product.</h2>
+    <p class="section-sub" style="margin-left:auto;margin-right:auto">The pool industry already charges enough. SplashLens is free because great field tools should be free.</p>
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="price-card-badge">The Only Plan</div>
+        <div class="price-plan">SplashLens</div>
+        <div class="price-num">$0</div>
+        <div class="price-period">Forever. No credit card.</div>
+        <ul class="price-features">
+          <li>500+ error codes across all major brands</li>
+          <li>Full chemical dosing calculators</li>
+          <li>Pool volume & turnover calculators</li>
+          <li>Sand, DE, and cartridge filter guides</li>
+          <li>Opening, closing, weekly, monthly checklists</li>
+          <li>SLAM & treatment plan generator</li>
+          <li>Salt chlorinator reference</li>
+          <li>Chemical safety & handling guide</li>
+          <li>Pool profiles saved to your device</li>
+          <li>Route / day view with progress tracking</li>
+          <li>Offline-first — works without signal</li>
+          <li>AI error code scanner — live</li>
+          <li>PartSnap AI parts identification — live</li>
+          <li>SLAM multi-day tracker</li>
+        </ul>
+        <a href="https://app.splashlens.com" target="_blank" class="btn-price primary">Open SplashLens →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE READY TRAINING -->
+<section style="background:#0f172a;color:white;padding:80px 0;">
+  <div class="container">
+    <div class="section-eyebrow" style="color:#7dd3fc;text-align:center">Coming Soon</div>
+    <h2 class="section-title" style="color:white;text-align:center">Route Ready — New Tech Onboarding</h2>
+    <p class="section-sub" style="color:#94a3b8;text-align:center;margin:0 auto 40px;">The pool industry trains new techs with a 2–4 week ride-along and tribal knowledge. No structured curriculum. No standard protocol. 21,000+ new techs enter the field every year with no consistent training tool.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:40px;">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">📋</div>
+        <h3 style="font-size:16px;font-weight:800;color:white;margin-bottom:8px;">Week 1 — The Service Sequence</h3>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">Daily 5-minute micro-lessons on the standard service workflow: skim, brush, vacuum, test, treat, document. Checklists techs tap through at each stop.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🔬</div>
+        <h3 style="font-size:16px;font-weight:800;color:white;margin-bottom:8px;">Week 2 — Water Chemistry Field Diagnosis</h3>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">Branching decision-tree scenarios based on real test readings. "Your pool is cloudy. FAC reads OK. Walk through this." — the thing the ride-along was supposed to teach.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">⚙️</div>
+        <h3 style="font-size:16px;font-weight:800;color:white;margin-bottom:8px;">Week 3 — Equipment & Error Codes</h3>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">Quick-access equipment lookup built into the same tool the tech already uses. Common pump codes, heater lockouts, salt cell diagnostics — on-route, not in a binder.</p>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🌿</div>
+        <h3 style="font-size:16px;font-weight:800;color:white;margin-bottom:8px;">Week 4 — Problem Pools</h3>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">Algae ID visual guide, green pool recovery, phosphate management, salt pool acid demand — the edge cases that break a new tech's first season.</p>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <p style="color:#64748b;font-size:13px;margin-bottom:20px;">Pricing: Free for individual techs (weeks 1–2) · $49–$99/mo company license for up to 15 trainees · $29 CPO prep module</p>
+      <a href="https://app.splashlens.com" target="_blank" style="background:#0284c7;color:white;padding:14px 32px;border-radius:100px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;">Use SplashLens Free Today →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--sky-xlight)">
+  <div class="container">
+    <div class="section-eyebrow" style="text-align:center">Questions</div>
+    <h2 class="section-title" style="text-align:center;margin-bottom:40px">FAQ</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">Is SplashLens really free? What's the catch?</summary>
+        <p class="faq-a">No catch. SplashLens is a free reference tool for pool technicians. No ads, no freemium upsell, no account required. We built it because good field tools should be free. The AI scanning feature will remain free when it ships.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How does offline mode work?</summary>
+        <p class="faq-a">When you first open SplashLens, the service worker caches the entire app — all JavaScript, all error code data, all reference tables — to your device. From that point forward, you don't need internet. The green dot in the header confirms you're running offline-capable. Works in basements, underground equipment rooms, rural backyards — anywhere.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Does SplashLens compete with Skimmer or Pool Brain?</summary>
+        <p class="faq-a">No. Those are service management platforms — billing, invoicing, customer CRM, route optimization. SplashLens is a field reference tool — error codes, dosing, filter guides. They're complementary. Many techs use Skimmer for their business and SplashLens for poolside reference. We intentionally don't do billing.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How do I install it on my phone?</summary>
+        <p class="faq-a">Open app.splashlens.com in Safari (iOS) or Chrome (Android). On iOS: tap the Share icon → Add to Home Screen. On Android: tap the browser menu → Install App. Takes about 5 seconds. You'll get a home screen icon and full-screen mode — just like a native app, no App Store required.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What brands are covered in the error code library?</summary>
+        <p class="faq-a">Hayward (TriStar, Super Pump, MasterTemp, OmniLogic), Pentair (IntelliFlow, IntelliFlo, MasterTemp, EasyTouch), Jandy (iAqualink, JXi), Zodiac, Maytronics/Dolphin (robot cleaners), Polaris, Kreepy Krauly, Waterway, and more. We're continuously adding codes — Beatbot and Betta robotic cleaners are in the current expansion.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">What does the AI scanner actually do?</summary>
+        <p class="faq-a">Two modes are live now. Error Scan: point your camera at any error code display — Hayward, Pentair, Jandy, Maytronics, and more — and the AI reads the code and returns the full fault diagnosis, likely causes, and fix steps in seconds. PartSnap: point at any pool part and the AI identifies the manufacturer, model, OEM part number, condition assessment, and what search terms to use to find it online. Both modes have an offline fallback using your device's native text detection when you don't have signal.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Is my pool data private?</summary>
+        <p class="faq-a">100%. Your pool profiles, chemistry history, and route data live entirely on your device in localStorage. Nothing is transmitted to any server. There's no account, no backend sync, no data collection. Your customer data is yours.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="container">
+    <h2>Ready to stop Googling error codes at the equipment pad?</h2>
+    <p>Open SplashLens right now. No signup. No install. Just open it.</p>
+    <a href="https://app.splashlens.com" target="_blank" class="btn-primary" style="display:inline-flex;gap:8px;align-items:center">
+      Open SplashLens Free →
+    </a>
+  </div>
+</div>
+
+
+<section id="stay-updated" style="background:#0369a1;padding:64px 24px;text-align:center">
+  <div style="max-width:560px;margin:0 auto">
+    <div style="font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#bae6fd;margin-bottom:12px">Coming Soon</div>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;color:white;margin-bottom:14px;line-height:1.2">Route Ready Training</h2>
+    <p style="font-size:1rem;color:#bae6fd;margin-bottom:28px;line-height:1.6">10-module curriculum that turns a new hire into a competent pool technician in under 30 days. Chemical math, equipment fault diagnosis, filter procedures, customer communication — all tied to the tool they already use.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="mailto:hello@splashlens.com?subject=Route Ready Early Access&body=I want early access to Route Ready training." style="background:white;color:#0369a1;padding:14px 28px;border-radius:100px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block">Get Early Access →</a>
+      <a href="https://app.splashlens.com" target="_blank" rel="noopener" style="background:transparent;color:white;padding:14px 28px;border-radius:100px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block;border:2px solid rgba(255,255,255,0.4)">Try the Free App</a>
+    </div>
+    <p style="font-size:12px;color:#7dd3fc;margin-top:16px">Email us at <a href="mailto:hello@splashlens.com" style="color:#bae6fd">hello@splashlens.com</a> — we'll add you to the early-access list.</p>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <p>© 2026 SplashLens · Built for pool service professionals · <a href="https://app.splashlens.com">app.splashlens.com</a></p>
+    <p style="margin-top:8px;font-size:.78rem">SplashLens is a free PWA field reference tool and is not affiliated with Hayward, Pentair, Jandy, Maytronics, Skimmer, or Pool Brain.</p>
+    <p style="margin-top:12px;font-size:.78rem">
+      <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp;
+      <a href="/blog/">Blog</a>
+    </p>
+  </div>
+</footer>
+
+
+  <!-- Cloudflare Web Analytics — paste your token from CF Dashboard > Web Analytics > splashlens.com -->
+  <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script> -->
+</body>
+</html>
