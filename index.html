@@ -929,7 +929,7 @@
           <li>10 free online AI scans per month</li>
           <li>SLAM multi-day tracker</li>
         </ul>
-        <a href="https://app.splashlens.com" target="_blank" class="btn-price primary">Open SplashLens →</a>
+        <a href="https://app.splashlens.com" target="_blank" class="btn-price primary" data-track="open_app_click" data-source="pricing_free">Open SplashLens →</a>
       </div>
       <div class="price-card">
         <div class="price-card-badge">Launch Revenue</div>
@@ -944,8 +944,8 @@
           <li>Part search and buy-link workflow</li>
           <li>Supports the free field app</li>
         </ul>
-        <a href="/api/checkout?plan=monthly" target="_blank" rel="noopener" class="btn-price primary">Upgrade Monthly →</a>
-        <a href="/api/checkout?plan=yearly" target="_blank" rel="noopener" class="btn-price" style="margin-top:8px;">Save with Annual →</a>
+        <a href="/api/checkout?plan=monthly" target="_blank" rel="noopener" class="btn-price primary" data-track="checkout_click" data-plan="monthly">Upgrade Monthly →</a>
+        <a href="/api/checkout?plan=yearly" target="_blank" rel="noopener" class="btn-price" data-track="checkout_click" data-plan="yearly" style="margin-top:8px;">Save with Annual →</a>
       </div>
     </div>
   </div>
@@ -981,7 +981,7 @@
     </div>
     <div style="text-align:center;">
       <p style="color:#64748b;font-size:13px;margin-bottom:20px;">Training pilot: free interest list. PartSnap Pro is the paid launch product today.</p>
-      <a href="https://app.splashlens.com" target="_blank" style="background:#0284c7;color:white;padding:14px 32px;border-radius:100px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;">Use SplashLens Free Today →</a>
+      <a href="https://app.splashlens.com" target="_blank" data-track="open_app_click" data-source="route_ready" style="background:#0284c7;color:white;padding:14px 32px;border-radius:100px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block;">Use SplashLens Free Today →</a>
     </div>
   </div>
 </section>
@@ -1029,7 +1029,7 @@
   <div class="container">
     <h2>Ready to stop Googling error codes at the equipment pad?</h2>
     <p>Open SplashLens right now. No signup. No install. Just open it.</p>
-    <a href="https://app.splashlens.com" target="_blank" class="btn-primary" style="display:inline-flex;gap:8px;align-items:center">
+    <a href="https://app.splashlens.com" target="_blank" class="btn-primary" data-track="open_app_click" data-source="bottom_cta" style="display:inline-flex;gap:8px;align-items:center">
       Open SplashLens Free →
     </a>
   </div>
@@ -1043,7 +1043,7 @@
     <p style="font-size:1rem;color:#bae6fd;margin-bottom:28px;line-height:1.6">Training is the future layer, not today's paywall. We are collecting pilot interest while SplashLens stays free and earns daily use in the field.</p>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <a href="mailto:hello@splashlens.com?subject=Route Ready Free Pilot&body=I want to join the Route Ready free pilot list." style="background:white;color:#0369a1;padding:14px 28px;border-radius:100px;font-weight:800;font-size:15px;text-decoration:none;display:inline-block">Join Free Pilot →</a>
-      <a href="https://app.splashlens.com" target="_blank" rel="noopener" style="background:transparent;color:white;padding:14px 28px;border-radius:100px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block;border:2px solid rgba(255,255,255,0.4)">Try the Free App</a>
+      <a href="https://app.splashlens.com" target="_blank" rel="noopener" data-track="open_app_click" data-source="pilot_section" style="background:transparent;color:white;padding:14px 28px;border-radius:100px;font-weight:700;font-size:15px;text-decoration:none;display:inline-block;border:2px solid rgba(255,255,255,0.4)">Try the Free App</a>
     </div>
     <p style="font-size:12px;color:#7dd3fc;margin-top:16px">Email us at <a href="mailto:hello@splashlens.com" style="color:#bae6fd">hello@splashlens.com</a> — we'll add you to the pilot list.</p>
   </div>
@@ -1063,5 +1063,35 @@
 
   <!-- Cloudflare Web Analytics — paste your token from CF Dashboard > Web Analytics > splashlens.com -->
   <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script> -->
+  <script>
+    (function () {
+      var endpoint = '/api/event';
+      function track(eventName, props) {
+        var body = JSON.stringify({
+          event: eventName,
+          source: 'site',
+          path: window.location.pathname + window.location.search,
+          props: props || {}
+        });
+        try {
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(endpoint, new Blob([body], { type: 'application/json' }));
+            return;
+          }
+          fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {});
+        } catch (err) {}
+      }
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest && event.target.closest('[data-track]');
+        if (!link) return;
+        track(link.getAttribute('data-track'), {
+          plan: link.getAttribute('data-plan') || '',
+          source: link.getAttribute('data-source') || '',
+          href: link.href || ''
+        });
+      });
+      track('site_page_view', { title: document.title });
+    })();
+  </script>
 </body>
 </html>
