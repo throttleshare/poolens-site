@@ -7,7 +7,7 @@
 <meta name="description" content="SplashLens is a free field rescue PWA for pool service technicians. Scan or search error codes, calculate chemical doses, and write service notes. Manual tools work offline after first load; AI scanner works online.">
 <meta property="og:title" content="SplashLens — Free Field Rescue App for Pool Techs">
 <meta property="og:description" content="Stuck at the equipment pad? Open SplashLens. Free, no account, manual tools work offline.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80">
+<meta property="og:image" content="https://images.pexels.com/photos/36777925/pexels-photo-36777925.jpeg?auto=compress&cs=tinysrgb&w=1200">
 <link rel="icon" href="https://app.splashlens.com/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://splashlens.com">
 <meta name="robots" content="index, follow">
@@ -15,7 +15,7 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"SplashLens","url":"https://splashlens.com","description":"Free field rescue app for pool service technicians — error codes, dosing calculators, visit reports, filter guides, and online AI equipment scanning.","potentialAction":{"@type":"SearchAction","target":"https://splashlens.com/blog/?q={search_term_string}","query-input":"required name=search_term_string"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SplashLens","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (PWA — iOS, Android, Desktop)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free field rescue PWA for pool service professionals. 500+ equipment error codes, chemical dosing calculators, visit reports, SLAM tracker, salt chlorinator reference, and online AI equipment scanner.","url":"https://app.splashlens.com","screenshot":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=630&fit=crop&q=80","featureList":["500+ equipment error codes","Manual tools work offline","Chemical dosing calculators","Visit reports","SLAM tracker","Salt chlorinator reference","Chemical safety guide","Online AI equipment scanner"]}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SplashLens","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (PWA — iOS, Android, Desktop)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free field rescue PWA for pool service professionals. 500+ equipment error codes, chemical dosing calculators, visit reports, SLAM tracker, salt chlorinator reference, and online AI equipment scanner.","url":"https://app.splashlens.com","screenshot":"https://images.pexels.com/photos/36777925/pexels-photo-36777925.jpeg?auto=compress&cs=tinysrgb&w=1200","featureList":["500+ equipment error codes","Manual tools work offline","Chemical dosing calculators","Visit reports","SLAM tracker","Salt chlorinator reference","Chemical safety guide","Online AI equipment scanner"]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"SplashLens","url":"https://splashlens.com","description":"SplashLens builds free field reference tools for pool service professionals.","sameAs":["https://app.splashlens.com"]}
@@ -72,10 +72,32 @@
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
-    font-weight: 700; font-size: 1.15rem; color: var(--sky-dark);
+    color: var(--sky-dark);
     text-decoration: none;
   }
-  .nav-logo svg { width: 32px; height: 32px; }
+  .nav-logo-mark {
+    width: 38px; height: 38px; border-radius: 11px;
+    display: grid; place-items: center;
+    background: linear-gradient(145deg, var(--sky), var(--sky-dark));
+    box-shadow: 0 8px 18px rgba(2, 132, 199, .18);
+    flex-shrink: 0;
+  }
+  .nav-logo-mark svg { width: 28px; height: 28px; }
+  .nav-logo-copy { display: flex; flex-direction: column; line-height: 1.02; }
+  .nav-logo-name {
+    font-size: 1.16rem;
+    font-weight: 900;
+    letter-spacing: .01em;
+    color: var(--slate);
+  }
+  .nav-logo-tag {
+    margin-top: 3px;
+    font-size: .58rem;
+    font-weight: 800;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--sky-dark);
+  }
   .nav-links { display: flex; align-items: center; gap: 28px; }
   .nav-links a {
     color: var(--slate-mid); text-decoration: none; font-size: .9rem; font-weight: 500;
@@ -92,8 +114,8 @@
   /* HERO */
   .hero {
     background:
-      linear-gradient(90deg, rgba(3, 105, 161, .94), rgba(14, 165, 233, .78)),
-      url("https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&w=1800&q=82") center/cover;
+      linear-gradient(90deg, rgba(3, 105, 161, .95), rgba(14, 165, 233, .72)),
+      url("https://images.pexels.com/photos/36777925/pexels-photo-36777925.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover;
     padding: 76px 24px 92px;
     text-align: center;
     position: relative;
@@ -141,35 +163,64 @@
     gap: 14px;
   }
   .field-photo {
-    min-height: 210px;
+    min-height: 268px;
     border-radius: 18px;
     overflow: hidden;
     position: relative;
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: var(--white);
     box-shadow: 0 24px 60px rgba(2, 8, 23, .24);
     border: 1px solid rgba(255,255,255,.22);
+  }
+  .field-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 86px;
+    background-image: var(--field-image);
+    background-size: cover;
+    background-position: var(--field-position, center);
   }
   .field-photo::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(2, 8, 23, .02), rgba(2, 8, 23, .68));
+    inset: 0 0 86px;
+    background: linear-gradient(180deg, rgba(2, 8, 23, .02), rgba(2, 8, 23, .16));
+    pointer-events: none;
   }
   .field-photo strong,
   .field-photo span {
-    position: absolute;
-    left: 18px;
-    right: 18px;
+    display: block;
+    position: relative;
     z-index: 1;
-    color: #fff;
     text-align: left;
+    background: var(--white);
   }
-  .field-photo strong { bottom: 42px; font-size: 1.05rem; }
-  .field-photo span { bottom: 18px; font-size: .82rem; color: rgba(255,255,255,.82); }
-  .field-photo.pool { background-image: url("https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?auto=format&fit=crop&w=1200&q=82"); }
-  .field-photo.pad { background-image: url("https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=82"); }
-  .field-photo.tech { background-image: url("https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=82"); }
+  .field-photo strong {
+    padding: 15px 18px 3px;
+    color: var(--slate);
+    font-size: 1.03rem;
+  }
+  .field-photo span {
+    min-height: 48px;
+    padding: 0 18px 16px;
+    font-size: .82rem;
+    color: var(--slate-soft);
+    line-height: 1.35;
+  }
+  .field-photo.pool {
+    --field-image: url("https://images.pexels.com/photos/36777925/pexels-photo-36777925.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    --field-position: center;
+  }
+  .field-photo.pad {
+    --field-image: url("https://cdn.pixabay.com/photo/2016/03/27/18/58/pool-pump-1283648_1280.jpg");
+    --field-position: center;
+  }
+  .field-photo.scan {
+    --field-image: url("https://images.pexels.com/photos/17324374/pexels-photo-17324374.jpeg?auto=compress&cs=tinysrgb&w=1400");
+    --field-position: center bottom;
+  }
   .btn-primary {
     display: inline-flex; align-items: center; gap: 8px;
     background: var(--white); color: var(--sky-dark);
@@ -551,7 +602,7 @@
   @media (max-width: 768px) {
     .nav-links { display: none; }
     .field-photo-grid { grid-template-columns: 1fr; }
-    .field-photo { min-height: 180px; }
+    .field-photo { min-height: 246px; }
     .ai-inner { grid-template-columns: 1fr; gap: 40px; }
     .steps::before { display: none; }
     .bridge-panel, .authority-grid { grid-template-columns: 1fr; }
@@ -564,13 +615,18 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" rx="8" fill="#0284c7"/>
-        <path d="M6 20 Q10 12 16 16 Q22 20 26 12" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-        <circle cx="16" cy="10" r="3" fill="#7dd3fc"/>
-        <path d="M10 24h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      SplashLens
+      <span class="nav-logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 20c2.7-2.7 5.3-2.7 8 0s5.3 2.7 8 0 5.3-2.7 8 0" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M5 25c2.7-2.7 5.3-2.7 8 0s5.3 2.7 8 0 5.3-2.7 8 0" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity=".46"/>
+          <circle cx="16" cy="11" r="5.4" stroke="white" stroke-width="2.4"/>
+          <circle cx="16" cy="11" r="2" fill="white"/>
+        </svg>
+      </span>
+      <span class="nav-logo-copy">
+        <span class="nav-logo-name">SplashLens</span>
+        <span class="nav-logo-tag">Field Rescue</span>
+      </span>
     </a>
     <div class="nav-links">
       <a href="#features">Features</a>
@@ -600,7 +656,7 @@
   <div class="field-photo-grid" aria-label="SplashLens field visuals">
     <div class="field-photo pool"><strong>Built for real pools</strong><span>Dosing, SLAM, volume, visit notes, and service history.</span></div>
     <div class="field-photo pad"><strong>Equipment-pad rescue</strong><span>Fault codes, heaters, pumps, filters, salt cells, and part lookup.</span></div>
-    <div class="field-photo tech"><strong>Technician workflow</strong><span>Fast lookup, confirmation notes, and route-ready reference.</span></div>
+    <div class="field-photo scan"><strong>Poolside scanner context</strong><span>Scan labels, check codes, and write the note while standing beside the water.</span></div>
   </div>
   <div class="trust-bar">
     <div class="trust-item">
