@@ -266,6 +266,59 @@
     padding: 3px 10px; border-radius: 100px;
   }
 
+  .bridge-band {
+    background: #f8fafc;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .bridge-panel {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 28px;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 30px;
+    box-shadow: var(--card-shadow);
+  }
+  .bridge-title {
+    font-size: clamp(1.45rem, 3vw, 2.25rem);
+    line-height: 1.1;
+    font-weight: 900;
+    color: var(--slate);
+    margin-bottom: 12px;
+  }
+  .bridge-copy {
+    color: var(--slate-soft);
+    font-size: .98rem;
+    line-height: 1.65;
+  }
+  .authority-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 10px;
+  }
+  .authority-cell {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    background: #f8fafc;
+    min-height: 132px;
+  }
+  .authority-cell strong {
+    display: block;
+    color: var(--sky-dark);
+    font-size: .86rem;
+    margin-bottom: 6px;
+  }
+  .authority-cell span {
+    display: block;
+    color: var(--slate-soft);
+    font-size: .78rem;
+    line-height: 1.45;
+  }
+
   /* HOW IT WORKS */
   .how-bg { background: var(--sky-xlight); }
   .steps { display: flex; flex-direction: column; gap: 0; position: relative; }
@@ -460,6 +513,7 @@
     .nav-links { display: none; }
     .ai-inner { grid-template-columns: 1fr; gap: 40px; }
     .steps::before { display: none; }
+    .bridge-panel, .authority-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -491,10 +545,10 @@
 <div class="hero">
   <div class="hero-badge">
     <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-    Free Right Now · No Account · Manual Tools Work Offline
+    PoolLens field tools are now SplashLens
   </div>
   <h1>Stuck at the<br>Equipment Pad?</h1>
-  <p class="hero-sub">Open SplashLens. Scan or search the fault code, calculate the dose, and write the service note before the stop goes sideways. Manual tools work offline after first load; AI scan works online.</p>
+  <p class="hero-sub">Open SplashLens, the PoolLens field rescue app rebuilt for working pool techs. Search the fault, calculate the dose, capture the service note, and keep the stop moving. Manual tools work offline after first load; AI scan works online.</p>
   <div class="hero-actions">
     <a href="https://app.splashlens.com" target="_blank" class="btn-primary">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
@@ -521,6 +575,25 @@
     </div>
   </div>
 </div>
+
+<!-- POOLLENS BRIDGE -->
+<section class="bridge-band">
+  <div class="container">
+    <div class="bridge-panel">
+      <div>
+        <div class="section-eyebrow">PoolLens merged into SplashLens</div>
+        <h2 class="bridge-title">One brand for poolside rescue, route authority, and tech training.</h2>
+        <p class="bridge-copy">PoolLens is the product DNA: practical calculators, logs, and equipment references. SplashLens is the public brand: faster to remember, broader than camera scanning, and pointed at the exact moment a tech is standing at a pad with a fault, a customer waiting, and no time for vague web results.</p>
+      </div>
+      <div class="authority-grid" aria-label="SplashLens service authority pillars">
+        <div class="authority-cell"><strong>Field rescue</strong><span>Code lookup, dosing math, SLAM tracking, service notes, and offline manual tools for the bad stop.</span></div>
+        <div class="authority-cell"><strong>Route Ready</strong><span>Training stays pilot-only until field usage proves the curriculum. No fake launch claim.</span></div>
+        <div class="authority-cell"><strong>PartSnap Pro</strong><span>Paid web scanner upgrade for extended online scans on this device. Manual tools stay free.</span></div>
+        <div class="authority-cell"><strong>Clean press and affiliate line</strong><span>Coverage can describe reference tools. Buy/search links are convenience paths with disclosure, not endorsements.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- STAT STRIP -->
 <div class="stat-strip">
@@ -941,7 +1014,7 @@
           <li>Error Scan for equipment displays</li>
           <li>PartSnap pool parts identification</li>
           <li>Test strip reader for field triage</li>
-          <li>Part search and buy-link workflow</li>
+          <li>Part verification and search workflow with affiliate disclosure where applicable</li>
           <li>Supports the free field app</li>
         </ul>
         <a href="/api/checkout?plan=monthly" target="_blank" rel="noopener" class="btn-price primary" data-track="checkout_click" data-plan="monthly">Upgrade Monthly →</a>
@@ -1051,7 +1124,7 @@
 <footer>
   <div class="container">
     <p>© 2026 SplashLens · Built for pool service professionals · <a href="https://app.splashlens.com">app.splashlens.com</a></p>
-    <p style="margin-top:8px;font-size:.78rem">SplashLens is a free PWA field reference tool and is not affiliated with Hayward, Pentair, Jandy, Maytronics, Skimmer, or Pool Brain.</p>
+    <p style="margin-top:8px;font-size:.78rem">SplashLens is a free PWA field reference tool and is not affiliated with Hayward, Pentair, Jandy, Maytronics, Skimmer, or Pool Brain. PoolLens appears here only as prior product language now merged into SplashLens. Product references, search links, and affiliate-capable links are for verification convenience and are not endorsements or repair guarantees.</p>
     <p style="margin-top:12px;font-size:.78rem">
       <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
       <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp;
