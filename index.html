@@ -15,10 +15,10 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"SplashLens","url":"https://splashlens.com","description":"Free field rescue app for pool service technicians - error codes, dosing calculators, visit reports, filter guides, and online scanner workflows.","potentialAction":{"@type":"SearchAction","target":"https://splashlens.com/blog/?q={search_term_string}","query-input":"required name=search_term_string"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SplashLens","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (PWA - iOS, Android, Desktop)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free field rescue PWA for pool service professionals. 500+ equipment error codes, chemical dosing calculators, visit reports, SLAM tracker, salt chlorinator reference, and online scanner workflows.","url":"https://app.splashlens.com","screenshot":"https://images.pexels.com/photos/17324374/pexels-photo-17324374.jpeg?auto=compress&cs=tinysrgb&w=1200","featureList":["500+ equipment error codes","Manual tools work offline","Chemical dosing calculators","Visit reports","SLAM tracker","Salt chlorinator reference","Chemical safety guide","Online scanner workflows"]}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SplashLens","applicationCategory":"UtilitiesApplication","operatingSystem":"iOS, Android, Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free field rescue app for pool service professionals. 500+ equipment error codes, chemical dosing calculators, visit reports, SLAM tracker, salt chlorinator reference, and online scanner workflows.","url":"https://apps.apple.com/us/app/splashlens/id6763644905","screenshot":"https://images.pexels.com/photos/17324374/pexels-photo-17324374.jpeg?auto=compress&cs=tinysrgb&w=1200","featureList":["500+ equipment error codes","Manual tools work offline","Chemical dosing calculators","Visit reports","SLAM tracker","Salt chlorinator reference","Chemical safety guide","Online scanner workflows"]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"SplashLens","url":"https://splashlens.com","description":"SplashLens builds free field reference tools for pool service professionals.","sameAs":["https://app.splashlens.com"]}
+{"@context":"https://schema.org","@type":"Organization","name":"SplashLens","url":"https://splashlens.com","description":"SplashLens builds free field reference tools for pool service professionals.","sameAs":["https://app.splashlens.com","https://apps.apple.com/us/app/splashlens/id6763644905"]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is SplashLens really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. SplashLens is free with no credit card and no account required."}},{"@type":"Question","name":"How does offline mode work?","acceptedAnswer":{"@type":"Answer","text":"When you first open SplashLens, the service worker caches the app to your device. Manual tools like error lookup, calculators, and guides work without signal after first load. Online camera scanning requires internet."}},{"@type":"Question","name":"What brands are covered in the error code library?","acceptedAnswer":{"@type":"Answer","text":"Hayward, Pentair, Jandy, Zodiac, Maytronics/Dolphin, Polaris, Aiper, Raypak, IntelliFlo, AquaCal, Sta-Rite, Waterway, Beatbot, Betta, and more - 500+ codes total."}},{"@type":"Question","name":"Does SplashLens compete with Skimmer or Pool Brain?","acceptedAnswer":{"@type":"Answer","text":"No. PoolBrain and Skimmer run the company. SplashLens supports the stop with field lookup, scanner, dosing, and service-note tools."}},{"@type":"Question","name":"Is the AI scanner live?","acceptedAnswer":{"@type":"Answer","text":"Yes. Error Scan, PartSnap, and Test Strip reader are live online. Offline use falls back to manual lookup and entry."}}]}
@@ -110,6 +110,18 @@
     transition: background .2s !important;
   }
   .nav-cta:hover { background: var(--sky-dark) !important; }
+  .nav-store {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #050505;
+    color: #fff !important;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-weight: 800 !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,.16);
+  }
+  .nav-store svg { width: 15px; height: 15px; flex-shrink: 0; }
 
   /* HERO */
   .hero {
@@ -230,6 +242,25 @@
     transition: transform .15s, box-shadow .15s;
   }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .app-store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 54px;
+    background: #050505;
+    color: #fff;
+    padding: 9px 20px 9px 16px;
+    border-radius: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,.28);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .app-store-badge:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.32); }
+  .app-store-badge svg { width: 28px; height: 28px; flex-shrink: 0; }
+  .app-store-badge span { display: flex; flex-direction: column; line-height: 1.08; text-align: left; }
+  .app-store-badge small { font-size: .66rem; font-weight: 700; opacity: .82; }
+  .app-store-badge strong { font-size: 1.02rem; letter-spacing: -.01em; }
   .btn-ghost {
     display: inline-flex; align-items: center; gap: 8px;
     border: 2px solid rgba(255,255,255,.5); color: var(--white);
@@ -634,6 +665,10 @@
       <a href="#how">How It Works</a>
       <a href="#compare">Compare</a>
       <a href="#ai">AI Scanning</a>
+      <a href="https://apps.apple.com/us/app/splashlens/id6763644905" target="_blank" rel="noopener" class="nav-store" aria-label="Download SplashLens on the App Store">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.2 12.4c0-2.7 2.2-4 2.3-4.1-1.3-1.8-3.2-2.1-3.8-2.2-1.6-.2-3.2 1-4 1s-2-.9-3.4-.9c-1.7 0-3.4 1-4.3 2.6-1.8 3.1-.5 7.8 1.3 10.4.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.2-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4zm-2.6-8c.7-.9 1.2-2.1 1.1-3.4-1.1 0-2.4.7-3.1 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.1-1.4z"/></svg>
+        App Store
+      </a>
       <a href="https://app.splashlens.com" target="_blank" class="nav-cta">Open App</a>
     </div>
   </div>
@@ -643,14 +678,18 @@
 <div class="hero">
   <div class="hero-badge">
     <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-    Before you call the senior tech
+    Now live on the App Store
   </div>
   <h1>Stuck at the <br>Equipment Pad?</h1>
   <p class="hero-sub">Open SplashLens before the escalation call: a heater fault on the pad, cloudy water after a storm, a salt cell question, or a customer waiting for a clear next step. Manual tools work offline after first load; online scans require signal and verification.</p>
   <div class="hero-actions">
+    <a href="https://apps.apple.com/us/app/splashlens/id6763644905" target="_blank" rel="noopener" class="app-store-badge" aria-label="Download SplashLens on the App Store">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.2 12.4c0-2.7 2.2-4 2.3-4.1-1.3-1.8-3.2-2.1-3.8-2.2-1.6-.2-3.2 1-4 1s-2-.9-3.4-.9c-1.7 0-3.4 1-4.3 2.6-1.8 3.1-.5 7.8 1.3 10.4.9 1.3 1.9 2.7 3.3 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8c1.4 0 2.3-1.3 3.2-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4zm-2.6-8c.7-.9 1.2-2.1 1.1-3.4-1.1 0-2.4.7-3.1 1.6-.7.8-1.3 2-1.1 3.2 1.2.1 2.4-.6 3.1-1.4z"/></svg>
+      <span><small>Download on the</small><strong>App Store</strong></span>
+    </a>
     <a href="https://app.splashlens.com" target="_blank" class="btn-primary">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      Open SplashLens Free
+      Open Web App Free
     </a>
     <a href="#features" class="btn-ghost">See Field Tools</a>
   </div>
@@ -671,6 +710,10 @@
     <div class="trust-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       Instant - No Install
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+      iOS App Store Live
     </div>
     <div class="trust-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -835,7 +878,7 @@
   <div class="container">
     <div class="section-eyebrow">How It Works</div>
     <h2 class="section-title">Zero setup. Open it and go.</h2>
-    <p class="section-sub">SplashLens is a PWA — a website that behaves like an app. No app store required, no account, no credit card.</p>
+    <p class="section-sub">SplashLens is live on the iOS App Store and still works as a free PWA from the browser. Use the App Store build on iPhone, or open the web app on any device.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
@@ -848,7 +891,7 @@
         <div class="step-num">2</div>
         <div class="step-body">
           <h3>Add to your home screen (optional, takes 5 seconds)</h3>
-          <p>iOS: Share, then Add to Home Screen. Android: tap the browser menu, then Install App. It will look and feel like a native app: icon, full-screen, no browser chrome.</p>
+          <p>iOS users can install from the App Store. Android and desktop users can open the web app, then use the browser install option for a full-screen app shell.</p>
         </div>
       </div>
       <div class="step">
@@ -1183,7 +1226,7 @@
       </details>
       <details class="faq-item">
         <summary class="faq-q">How do I install it on my phone?</summary>
-        <p class="faq-a">Open app.splashlens.com in Safari (iOS) or Chrome (Android). On iOS: tap the Share icon, then Add to Home Screen. On Android: tap the browser menu, then Install App. You will get a home screen icon and full-screen mode without an app store install.</p>
+        <p class="faq-a">On iPhone, install SplashLens from the App Store. On Android or desktop, open app.splashlens.com and use the browser install option when available. The web app remains free for field reference use.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">What brands are covered in the error code library?</summary>
