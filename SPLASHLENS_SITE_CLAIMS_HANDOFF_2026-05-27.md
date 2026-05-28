@@ -11,10 +11,13 @@ The SplashLens marketing site now aligns better with the field-app direction:
 - Online AI scanner features require internet.
 - PartSnap Pro is a web-only paid launch product with device-local access while account entitlement is being built.
 - Route Ready is a free pilot / planned training layer, not a completed paid certificate product.
+- Homepage positioning now leads with "before you call the senior tech" and uses field-reference language instead of repair guarantees.
+- The homepage favicon uses the local SplashLens logo asset at `/favicon.svg`.
 
 ## What Changed
 
 - Tightened homepage, privacy, terms, Route Ready, outreach, and LLM copy.
+- Updated homepage pool/pump-pad visual choices and first-screen copy.
 - Added stronger security headers and deployment/env documentation.
 - Clarified AI scanner privacy, Stripe checkout, anonymous event tracking, and affiliate disclosure boundaries.
 - Added store-wrapper warning for native submissions: free-core only unless native billing is added.
@@ -32,6 +35,7 @@ Completed on Windows:
 - Bind `SUBSCRIBERS_DB` before production deploys that rely on subscribe/event functions.
 - Replace hardcoded Stripe Payment Links with env vars before rotating links.
 - Add clear affiliate disclosure before any real Amazon or parts affiliate tag goes live.
+- Paid scanner entitlement is still not production-complete: `poolens/functions/api/scan.js` enforces anonymous server metering when `SCAN_USAGE_KV` is bound, but it does not verify an account, Stripe customer, or native store entitlement.
 - Full live-site E2E deploy/smoke remains part of the final flagship gate.
 
 ## Backup Gate
