@@ -1871,3 +1871,42 @@ True blockers:
 - Gmail verification found no remaining draft and confirmed sent message id `1a0641ddf463a0e0` in thread `1a06399f70bffe21`, sent from Joshua Frost `<frost@belowzeromedia.com>` to Brett Abbott `<brett@mymaustin.com>` with reply-to `hello@splashlens.com`.
 - Sent timestamp from Gmail headers: `Wed, 2 Sep 2026 16:54:31 -0500`.
 - Queue note updated to replace the draft-only status with sent-reply proof. Pool Builder Marketing remains `replied` and should stay warm-thread only.
+
+## 2026-09-10 - Closing-season clean queue send
+
+Preflight:
+- Confirmed connected Gmail sender: Joshua Frost <frost@belowzeromedia.com>; Reply-To used: hello@splashlens.com.
+- Stop-signal sweep across recent SplashLens/PartSnap mail found Stripe webhook noise and the already-known Coastal Carolina hard bounce, not today queue recipients.
+- Exact 25 queued recipients had no SplashLens/PartSnap/app-domain Gmail history and no stop-language hits.
+- Sent one-to-one plain-text notes only, no BCC, all with tracked `closing_season_2026` campaign links and opt-out language.
+
+Sent count: 25
+Suppressed/skipped from this clean queue: 0
+Next send/follow-up floor applied in CSV: 2026-09-14
+
+Recipients:
+- info@RussosPoolandSpa.com
+- info@abovegroundprofessionals.com
+- frank@powerpoolservice.com
+- contact@splashcustompools.com
+- stjohnpoolcenter@gmail.com
+- forresterpoolservice@gmail.com
+- jarrod@thepoolpeopleofohio.com
+- stcsales@fsp-stl.com
+- wtzsales@fsp-stl.com
+- service@poolprosohio.com
+- info@k-pool.com
+- sales@paradisepoolsky.com
+- greatlakespoolservices@gmail.com
+- oscar.ocswimmingpools@gmail.com
+- ALLMNPOOLS@gmail.com
+- ALLMNPOOLZ@gmail.com
+- Emily@elitepoolkc.com
+- Rocky@elitepoolkc.com
+- wyoung.truebluepools@gmail.com
+- ahps@verizon.net
+- kenaaps@yahoo.com
+- service@poolsbymurphy.com
+- info@cannonballpoolsnj.com
+- contact@newjerseypoolmanagement.com
+- info@aquaticpool.com
